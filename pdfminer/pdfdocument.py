@@ -572,7 +572,7 @@ class PDFDocument(object):
             # If there's an encryption info, remember it.
             if 'Encrypt' in trailer:
                 #assert not self.encryption, str(self.encryption)
-                self.encryption = (list_value(trailer['ID']),
+                self.encryption = (list_value(trailer.get('ID', [b''])),
                                    dict_value(trailer['Encrypt']))
                 self._initialize_password(password)
             if 'Info' in trailer:
