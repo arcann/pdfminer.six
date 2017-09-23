@@ -347,7 +347,8 @@ class PSBaseParser(object):
         m = EOL.search(s, i)
         if not m:
             self._curtoken += bytesindex(s,i,-1)
-            return (self._parse_comment, len(s))
+            # TODO: Test this fix to call recursively instead of returning a tuple.
+            return self._parse_comment(s, len(s))
         j = m.start(0)
         self._curtoken += bytesindex(s,i,j)
         self._parse1 = self._parse_main
